@@ -34,21 +34,24 @@ Il utilise un **algorithme glouton** pour minimiser la distance totale parcourue
 
 ## 🗂️ Structure du projet
 
+```
 Projet_chemin_optimisé/
 │
-├── src/
-│   ├── Algo/
-│   │   ├── CheminTest.java
-│   │   ├── Commande.java
-│   │   ├── Extraction.java
-│   │   └── Main.java
-│   └── Ressources/
-│       ├── scenario_0.txt
-│       └── scenario_1.txt
+├── src/ # Contient le code source Java et les ressources
+│ ├── Algo/ # Classes Java principales
+│ │ ├── CheminTest.java # Classe principale du calcul de chemin
+│ │ ├── Commande.java # Classe représentant une commande (vendeur -> acheteur)
+│ │ ├── Extraction.java # Classe de lecture et extraction des fichiers de scénario
+│ │ └── Main.java # Main pour exécuter les scénarios
+│ │
+│ └── Ressources/ # Fichiers de scénarios et données
+│ ├── scenario_0.txt # Scénario 0
+│ └── scenario_1.txt # Scénario 1
 │
-├── README.md
-├── .gitignore
-└── SAEJAVA.iml
+├── README.md # Ce fichier
+├── .gitignore # Fichiers à ignorer par Git
+└── SAEJAVA.iml # Fichier IntelliJ (optionnel sur GitHub)
+```
 
 ---
 
