@@ -1,18 +1,26 @@
 package Algo;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
+import Algo.Commande.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheminTest {
     private final Extraction extraction;
     private final List<String> sommets;
     private final List<Commande> commandes;
+    private int numeroScenario;
+    private String scenarioFichier;
 
     public CheminTest(int scenarioChoisi) throws FileNotFoundException {
+        numeroScenario = numeroScenario;
+        scenarioFichier = "src" + File.separator + "Ressources" + File.separator + "scenario_" + numeroScenario + ".txt";
         extraction = new Extraction();
         sommets = new ArrayList<>();
         sommets.add("Velizy");
-        sommets.addAll(extraction.getVilles().keySet());
+        sommets.addAll(extraction.getVilles(scenarioChoisi).keySet());
 
         commandes = new ArrayList<>();
         for (Map.Entry<String, String> entry : extraction.getScenarios().get(scenarioChoisi).entrySet()) {
@@ -86,25 +94,25 @@ public class CheminTest {
         return distance;
     }
 
-    public List<Commande> getCommandes() {
-        return commandes;
+    public List<Commande> getCommandes() throws IOException {
+        List<Commande> commandesBrutes = extraction.lireCommandesScenario(scenarioFichier);
+        List<Commande> commandesFiltres = new ArrayList<>();
+
+        for (Commande c : commandesBrutes) {
+            String villeVendeur = extraction.getCorrespondances().get(c.getVendeur());
+            String villeAcheteur = extraction.getCorrespondances().get(c.getAcheteur());
+
+            if (villeVendeur == null || villeAcheteur == null) continue;
+
+            // Exclure commandes où vendeur et acheteur sont dans la même ville
+            if (!villeVendeur.equals(villeAcheteur)) {
+                commandesFiltres.add(c);
+            }
+        }
+        return commandesFiltres;
     }
 
     public List<String> getSommets() {
         return sommets;
-    }
-
-    public static class Commande {
-        public final String vendeur;
-        public final String acheteur;
-
-        public Commande(String vendeur, String acheteur) {
-            this.vendeur = vendeur;
-            this.acheteur = acheteur;
-        }
-
-        public String toString() {
-            return vendeur + " -> " + acheteur;
-        }
     }
 }

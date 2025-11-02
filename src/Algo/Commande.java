@@ -1,6 +1,6 @@
 package Algo;
 
-class Commande {
+public class Commande {
     public final String vendeur;
     public final String acheteur;
 
@@ -9,8 +9,15 @@ class Commande {
         this.acheteur = acheteur;
     }
 
-    @Override
     public String toString() {
         return vendeur + " -> " + acheteur;
+    }
+
+    public String getVendeur() {
+        return vendeur;
+    }
+
+    public String getAcheteur() {
+        return acheteur;
     }
 }

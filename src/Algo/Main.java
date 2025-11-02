@@ -1,27 +1,17 @@
 package Algo;
 
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Map;
-
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-//        Extraction e = new Extraction();
-//        Chemin ch = new Chemin();
-//        System.out.println(e.getVilles());
-//        System.out.println(e.getScenarios());
-//        System.out.println(e.getMembresVilles());
-//        System.out.println(ch.getSommets());
-
         Extraction extraction = new Extraction();
-
+        System.out.println(extraction.getMembresVilles());
         System.out.println("Nombre total de scénarios détectés : " + extraction.getScenarios().size());
 
         for (int i = 0; i < extraction.getScenarios().size(); i++) {
             System.out.println("=== SCÉNARIO " + i + " ===");
             try {
-                CheminTest chemin = new CheminTest(i);
+                CheminTest chemin = new CheminTest(i);  // constructeur avec numéro scénario
                 var commandes = chemin.getCommandes();
 
                 if (commandes.isEmpty()) {
@@ -30,7 +20,7 @@ public class Main {
                 }
 
                 System.out.println("Commandes :");
-                for (CheminTest.Commande c : commandes) {
+                for (Commande c : commandes) {
                     System.out.println(" - " + c);
                 }
 
@@ -49,8 +39,7 @@ public class Main {
                 e.printStackTrace();
                 System.out.println();
             }
+            System.out.println("--------\n");
         }
-    }}
-
-//        Algo1 a = new Algo1();
-//        System.out.println(a);
+    }
+}
